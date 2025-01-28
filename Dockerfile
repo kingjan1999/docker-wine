@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="scottyhardy/docker-remote-desktop"
+ARG BASE_IMAGE="kingjan1999/docker-remote-desktop"
 ARG TAG="latest"
 FROM ${BASE_IMAGE}:${TAG}
 

@@ -71,14 +71,14 @@ jobs:
         with:
           cond: ${{ matrix.wine_branch == 'stable' }}
           if_true:
-            scottyhardy/docker-wine:latest,
-            scottyhardy/docker-wine:${{ matrix.wine_branch }},
-            scottyhardy/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }},
-            scottyhardy/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }}-${{ steps.timestamp.outputs.value }}
+            kingjan1999/docker-wine:latest,
+            kingjan1999/docker-wine:${{ matrix.wine_branch }},
+            kingjan1999/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }},
+            kingjan1999/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }}-${{ steps.timestamp.outputs.value }}
           if_false:
-            scottyhardy/docker-wine:${{ matrix.wine_branch }},
-            scottyhardy/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }},
-            scottyhardy/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }}-${{ steps.timestamp.outputs.value }}
+            kingjan1999/docker-wine:${{ matrix.wine_branch }},
+            kingjan1999/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }},
+            kingjan1999/docker-wine:${{ matrix.wine_branch }}-${{ steps.wine_ver.outputs.value }}-${{ steps.timestamp.outputs.value }}
       -
         name: Build and push
         id: docker_build
@@ -90,8 +90,8 @@ jobs:
           tags: ${{ steps.tags.outputs.value }}
       -
         name: Update repo description
-        uses: peter-evans/dockerhub-description@v2
+        uses: peter-evans/dockerhub-description@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: scottyhardy/docker-wine
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: kingjan1999/docker-wine
